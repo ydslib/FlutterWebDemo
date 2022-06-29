@@ -5,6 +5,8 @@ function flutterGetJs(text){
 
 function getSearchData(){
     var result = searchData.getSearchData();
+    var text = "js入参"
+    window.invokeJs(text);
     return result;
 }
 

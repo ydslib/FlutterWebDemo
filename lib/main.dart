@@ -28,7 +28,6 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -67,10 +66,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
-    var result = Utils.getSearchData();
+    var result = Utils.getSearchData((text) {
+      print("Flutter内部回调：$text");
+    });
     var demo = DemoBean.fromJson(result);
-
 
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
@@ -114,18 +113,18 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  List<Widget> _buildBody(DemoBean demoBean){
+  List<Widget> _buildBody(DemoBean demoBean) {
     List<Widget> res = [];
     List<DemoResult?>? data = demoBean.results;
-    if(data!=null){
-      for(final i in data){
+    if (data != null) {
+      for (final i in data) {
         res.add(_buildItem(i));
       }
     }
     return res;
   }
 
-  Widget _buildItem(DemoResult? result){
+  Widget _buildItem(DemoResult? result) {
     return new Container(
       child: Row(
         children: [

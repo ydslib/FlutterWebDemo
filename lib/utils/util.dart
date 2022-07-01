@@ -16,4 +16,9 @@ class Utils {
     var result = js.context.callMethod("getSearchData");
     return jsonDecode(result);
   }
+
+  static String getHtmlData(){
+    var result = js.context.callMethod("getHtmlData");
+    return result;
+  }
 }

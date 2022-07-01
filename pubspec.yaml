@@ -41,6 +41,7 @@ dependencies:
 
   # https://pub.dev/packages/dio_cookie_manager
   dio_cookie_manager: 2.0.0
+  flutter_html: ^2.2.1
 
 dev_dependencies:
   flutter_test:

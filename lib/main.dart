@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_web_demo/bean/demo_bean.dart';
 import 'package:flutter_web_demo/utils/util.dart';
 
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -70,6 +72,13 @@ class _MyHomePageState extends State<MyHomePage> {
       print("Flutter内部回调：$text");
     });
     var demo = DemoBean.fromJson(result);
+    var htmlData = Utils.getHtmlData();
+    Widget html = Html(
+      data: htmlData,
+    );
+
+    List<Widget> child = _buildBody(demo);
+    child.add(html);
 
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
@@ -102,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
 
-          children: _buildBody(demo),
+          children: child,
         ),
       ),
       floatingActionButton: FloatingActionButton(

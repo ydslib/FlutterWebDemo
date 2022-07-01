@@ -10,6 +10,11 @@ function getSearchData(){
     return result;
 }
 
+function getHtmlData(){
+    var result = searchData.getHtmlData();
+    return result;
+}
+
 function JSMethod(){
     javascriptFunctionName({'param':'value'});
 }

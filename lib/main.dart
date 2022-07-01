@@ -75,6 +75,11 @@ class _MyHomePageState extends State<MyHomePage> {
     var htmlData = Utils.getHtmlData();
     Widget html = Html(
       data: htmlData,
+      style: {
+        "table":Style(border: Border.all(color: Colors.red)),
+        "th":Style(border: Border.all(color: Colors.red)),
+        "td":Style(border: Border.all(color: Colors.red))
+      },
     );
 
     List<Widget> child = _buildBody(demo);

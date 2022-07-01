@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_web_demo/bean/demo_bean.dart';
 import 'package:flutter_web_demo/utils/util.dart';
+import 'package:html/dom.dart' as dom;
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
   runApp(const MyApp());
@@ -74,14 +76,16 @@ class _MyHomePageState extends State<MyHomePage> {
     var demo = DemoBean.fromJson(result);
     var htmlData = Utils.getHtmlData();
     Widget html = Html(
-      data: htmlData,
-      style: {
-        "table":Style(border: Border.all(color: Colors.red)),
-        "th":Style(border: Border.all(color: Colors.red)),
-        "td":Style(border: Border.all(color: Colors.red))
-      },
-    );
-
+        data: htmlData,
+        style: {
+          "th": Style(border: Border.all(color: Colors.red)),
+          "td": Style(border: Border.all(color: Colors.red)),
+        },
+        onAnchorTap: (String? url, RenderContext context,
+            Map<String, String> attributes, dom.Element? element) {
+          print('$url${element?.localName}');
+          Fluttertoast.showToast(msg: "$url${element?.localName}${element?.text}");
+        });
     List<Widget> child = _buildBody(demo);
     child.add(html);
 
